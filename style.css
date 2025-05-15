@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom left, #A2D2FA, #5BAAE0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+    color: #181E4B;
+}
+
+#select-pais {
+  padding: 10px 16px;
+  margin: 20px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background-color: #ffffffcc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  outline: none;
+}
+
+#select-pais:focus {
+   border-color: #888; 
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); 
+}
+
+#select-pais:hover {
+    background-color: #dfdada;
+}
+
+#card-pais {
+  background: #ffffffee;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#card-pais img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+ h2, h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+.oculto {
+  display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  
+  body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #select-pais {
+    width: 100%;
+    max-width: 320px;
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin: 0 auto 20px; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #card-pais {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffffcc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  h2, h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+
+  .container {
+    width: 100%;
+    margin: auto;
+    padding: 40px 20px 80px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 100vh; 
+  }
+
+  #select-pais {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #card-pais {
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    border-radius: 18px;
+    background-color: #ffffffcc;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  h2, h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) {
+  #card-pais:hover {
+  transform: scale(1.005);
+}
+}
