@@ -13,7 +13,7 @@ fetch('https://restcountries.com/v3.1/all')
   .then(res => res.json())
   .then(dados => {
     dadosPaises = dados;
-    const select = document.getElementById('select-pais');
+    const select = document.getElementById('select-country');
 
     dadosPaises.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
@@ -25,12 +25,12 @@ fetch('https://restcountries.com/v3.1/all')
     });
   });
 
-document.getElementById('select-pais').addEventListener('change', function () {
+document.getElementById('select-country').addEventListener('change', function () {
   const codigoSelecionado = this.value;
   const pais = dadosPaises.find(p => p.cca2 === codigoSelecionado);
 
   if (pais) {
-    const card = document.getElementById('card-pais');
+    const card = document.getElementById('card-country');
     card.innerHTML = `
       <img src="${pais.flags.svg}" alt="Bandeira de ${pais.name.common}">
       <h2>${pais.name.official}</h2>
@@ -42,7 +42,7 @@ document.getElementById('select-pais').addEventListener('change', function () {
       <p><strong>Código de chamada:</strong> ${pais.idd.root + pais.idd.suffixes[0]}</p>
       <p><strong>Domínio de internet:</strong> ${pais.tld?.[0]}</p>
     `;
-    card.classList.remove('oculto');
+    card.classList.remove('hidden');
   }
 });
 
