@@ -1,60 +1,64 @@
-fetch('https://restcountries.com/v3.1/all')
-  .then(resposta => resposta.json())
-  .then(dados => {
-    console.log(dados); 
-   
-  })
-  .catch(erro => console.error("Erro ao buscar países:", erro));
+document.addEventListener("DOMContentLoaded", () => {
+  const cepInput = document.getElementById("cep-input");
+  const searchBtn = document.getElementById("search-btn");
+  const addressCard = document.getElementById("address-card");
 
+  const searchCEP = async () => {
+    const cep = cepInput.value.replace(/\D/g, "");
 
-let dadosPaises = [];
+    if (cep.length !== 8) {
+      showError("Por favor, digite um CEP válido com 8 dígitos.");
+      return;
+    }
 
-fetch('https://restcountries.com/v3.1/all')
-  .then(res => res.json())
-  .then(dados => {
-    dadosPaises = dados;
-    const select = document.getElementById('select-country');
+    showLoading();
 
-    dadosPaises.sort((a, b) => a.name.common.localeCompare(b.name.common));
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
 
-    dadosPaises.forEach(pais => {
-      const option = document.createElement('option');
-      option.value = pais.cca2; 
-      option.textContent = pais.name.common;
-      select.appendChild(option);
-    });
+      if (!response.ok) {
+        throw new Error("Não foi possível conectar ao serviço de CEP.");
+      }
+
+      const data = await response.json();
+
+      if (data.erro) {
+        showError("CEP não encontrado. Verifique o número digitado.");
+      } else {
+        displayAddress(data);
+      }
+    } catch (error) {
+      showError("Ocorreu um erro ao buscar o CEP. Tente novamente.");
+      console.error("Erro na API de CEP:", error);
+    }
+  };
+
+  const showLoading = () => {
+    addressCard.classList.remove("hidden");
+    addressCard.innerHTML = `<p class="error-message" style="color: var(--primary-color);">Buscando...</p>`;
+  };
+
+  const showError = (message) => {
+    addressCard.classList.remove("hidden");
+    addressCard.innerHTML = `<p class="error-message">${message}</p>`;
+  };
+
+  const displayAddress = (data) => {
+    addressCard.classList.remove("hidden");
+    addressCard.innerHTML = `
+            <p><strong>Rua:</strong> ${data.logradouro || "N/A"}</p>
+            <p><strong>Bairro:</strong> ${data.bairro || "N/A"}</p>
+            <p><strong>Cidade:</strong> ${data.localidade || "N/A"}</p>
+            <p><strong>Estado:</strong> ${data.uf || "N/A"}</p>
+            <p><strong>IBGE:</strong> ${data.ibge || "N/A"}</p>
+        `;
+  };
+
+  searchBtn.addEventListener("click", searchCEP);
+
+  cepInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      searchCEP();
+    }
   });
-
-document.getElementById('select-country').addEventListener('change', function () {
-  const codigoSelecionado = this.value;
-  const pais = dadosPaises.find(p => p.cca2 === codigoSelecionado);
-
-  if (pais) {
-    const card = document.getElementById('card-country');
-    card.innerHTML = `
-      <img src="${pais.flags.svg}" alt="Bandeira de ${pais.name.common}">
-      <h2>${pais.name.official}</h2>
-      <p><strong>Continente:</strong> ${pais.region}</p>
-      <p><strong>Capital:</strong> ${pais.capital?.[0] || 'Sem capital'}</p>
-      <p><strong>População:</strong> ${pais.population.toLocaleString()}</p>
-      <p><strong>Idioma:</strong> ${Object.values(pais.languages).join(', ')}</p>
-      <p><strong>Moeda:</strong> ${Object.values(pais.currencies)[0].name + ' (' + Object.keys(pais.currencies)[0] + ')'}</p>
-      <p><strong>Código de chamada:</strong> ${pais.idd.root + pais.idd.suffixes[0]}</p>
-      <p><strong>Domínio de internet:</strong> ${pais.tld?.[0]}</p>
-    `;
-    card.classList.remove('hidden');
-  }
 });
-
-const regioesTraduzidas = {
-  Africa: "África",
-  Americas: "Américas",
-  Asia: "Ásia",
-  Europe: "Europa",
-  Oceania: "Oceania"
-};
-
-const regiaoOriginal = pais.region;
-const regiaoTraduzida = regioesTraduzidas[regiaoOriginal] || regiaoOriginal;
-
-

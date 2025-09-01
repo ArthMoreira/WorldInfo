@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca CEP</title>
+    <!-- Link para a folha de estilos externa -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Link para o Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      xintegrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8UoI4PxypgnZZWLK6sDxxEOYRweyo6U-9zxJnbQ_A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="content">
+      <h1>Buscador de Endereço por CEP</h1>
+      <div class="search-container">
+        <input
+          type="tel"
+          id="cep-input"
+          placeholder="Digite o CEP (só números)"
+          maxlength="8"
+        />
+        <button id="search-btn"><i class="fas fa-search"></i></button>
+      </div>
 
-    <title>WorldInfo</title>
-</head>
-<body>
-  <div class="content">
-    <h1>Consulta de Países</h1>
-    <select id="select-country">
-      <option value="">Selecione um país</option>
-    </select>
-
-    <div id="card-country" class="card hidden">
-
+      <div id="address-card" class="card hidden"></div>
     </div>
-  </div>
 
- <footer>
-  <div id="footer_rights">
-    <p class="footer-text">2025 Todos os Direitos Reservados. Arthur Moreira</p>
-  </div>
-  <div class="footer-icons">
-  <a href="https://github.com/ArthMoreira" target="_blank"><i class="fab fa-github"></i></a>
-  <a href="https://www.linkedin.com/in/thurmoreira/" target="_blank"><i class="fab fa-linkedin"></i></a>
-</div>
-</footer>
+    <footer>
+      <div id="footer_rights">
+        <p class="footer-text">
+          2025 Todos os Direitos Reservados. Arthur Moreira
+        </p>
+      </div>
+      <div class="footer-icons">
+        <a
+          href="https://github.com/ArthMoreira"
+          target="_blank"
+          aria-label="GitHub de Arthur Moreira"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/thurmoreira/"
+          target="_blank"
+          aria-label="LinkedIn de Arthur Moreira"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </div>
+    </footer>
 
-     <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

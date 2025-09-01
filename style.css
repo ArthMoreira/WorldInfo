@@ -1,17 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #181e4b;
+  --secondary-color: #3b82f6;
+  --bg-grad-start: #a2d2fa;
+  --bg-grad-end: #5baae0;
+  --card-bg: #ffffffee;
+  --input-bg: #ffffffcc;
+  --light-text: #ffffff;
+  --border-color: #ccc;
+  --hover-bg: #dfdada;
+  --error-color: #ef4444;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  background: linear-gradient(to bottom left, #A2D2FA, #5BAAE0);
+  background: linear-gradient(
+    to bottom left,
+    var(--bg-grad-start),
+    var(--bg-grad-end)
+  );
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: #333;
 }
 
 .content {
@@ -25,98 +43,94 @@ body {
 }
 
 h1 {
-  color: #181E4B;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
-#select-country {
-  padding: 10px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  background-color: #ffffffcc;
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 30px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#cep-input {
+  flex-grow: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  background-color: var(--input-bg);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
   outline: none;
+  -webkit-appearance: none;
 }
 
-#select-country:focus {
-  border-color: #888; 
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); 
+#search-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--secondary-color);
+  color: var(--light-text);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#select-country:hover {
-  background-color: #dfdada;
+#search-btn:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
 }
 
-#card-country {
-  background: #ffffffee;
+#address-card {
+  background: var(--card-bg);
   padding: 24px;
   border-radius: 12px;
   max-width: 400px;
   width: 100%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
-#card-country img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
-
-h2, h3 {
-  font-size: 19.2px;
+#address-card p {
   margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-p {
-  margin-bottom: 8px;
+#address-card p strong {
+  color: var(--primary-color);
+  display: inline-block;
+  width: 80px;
 }
 
 .hidden {
   display: none;
 }
 
+.error-message {
+  color: var(--error-color);
+  font-weight: 500;
+  text-align: center;
+}
 
 footer {
   background: transparent;
   padding: 20px 0;
+  margin-top: auto;
 }
 
 #footer_rights {
   text-align: center;
   font-size: 15px;
   font-weight: 400;
-  color: #181E4B;
-  position: relative;
-  transition: color 0.4s ease;
-}
-
-#footer_rights::after {
-  content: "Desenvolvedor Front-end"; 
-  position: absolute;
-  font-size: 15px;
-  top: 50%; 
-  left: 50%; 
-  opacity: 0; 
-  transform: translate(-50%, -50%); 
-  color: white;
-  border-bottom: 2px solid #181E4B;
-  transition: opacity 0.3s ease;
-}
-
-#footer_rights:hover {
-  color: transparent; 
-}
-
-#footer_rights:hover::after {
-  opacity: 1; 
+  color: var(--primary-color);
 }
 
 .footer-icons {
@@ -127,124 +141,31 @@ footer {
   gap: 16px;
 }
 
-.footer-icons i {
-  font-size: 24px;
-  color: #181E4B;
+.footer-icons a {
+  color: var(--primary-color);
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.footer-icons i:hover {
-  color: white;
+.footer-icons a:hover {
+  color: var(--light-text);
   transform: scale(1.1);
 }
+
+.footer-icons i {
+  font-size: 24px;
+}
+
 @media only screen and (max-width: 480px) {
-  body {
-    padding: 0;
-  }
-
-  #select-country {
-    width: 100%;
+  .search-container {
+    flex-direction: column;
     max-width: 320px;
-    font-size: 15.2px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 20px; 
   }
-
-  #card-country {
+  #cep-input,
+  #search-btn {
     width: 100%;
+  }
+  #address-card {
+    width: 90%;
     max-width: 320px;
-    padding: 20px;
-    border-radius: 16px;
-    font-size: 14.4px;
-  }
-
-  h2, h3 {
-    font-size: 19.2px;
-  }
-
-  p {
-    margin-bottom: 8px;
-  }
-
-  #footer_rights {
-    font-size: 12px;
-  }
-
-  #footer_rights::after {
-    font-size: 12px;
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 819px) {
-  #select-country {
-    max-width: 360px;
-    font-size: 15.5px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-  }
-
-  #card-country {
-    max-width: 360px;
-    padding: 22px;
-    border-radius: 16px;
-    font-size: 15.2px;
-  }
-
-  h2, h3 {
-    font-size: 20px;
-  }
-
-  p {
-    margin-bottom: 9px;
-  }
-
-  #footer_rights {
-    font-size: 14px;
-  }
-
-  #footer_rights::after {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-   
-  #select-country {
-    width: 100%;
-    max-width: 380px;
-    font-size: 15.5px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-  }
-
-  #card-country {
-    width: 100%;
-    max-width: 380px;
-    padding: 22px;
-    border-radius: 16px;
-    font-size: 15.2px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2, h3 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 14.5px;
-  }
-
-}
-
-
-@media (hover: hover) {
-  #card-country:hover {
-    transform: scale(1.005);
   }
 }
